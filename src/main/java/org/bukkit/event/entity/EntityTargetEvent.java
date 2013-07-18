@@ -134,6 +134,10 @@ public class EntityTargetEvent extends EntityEvent implements Cancellable {
          */
         COLLISION,
         /**
+         * When an wither selects it's chase target as an attack target for it's middle head
+         */
+        WITHER_TARGET,
+        /**
          * For custom calls to the event.
          */
         CUSTOM
