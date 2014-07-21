@@ -17,6 +17,10 @@ public interface Wither extends Monster {
 
     /**
      * Sets the current target of a wither head.
+     * <br />
+     * Please note, the center head is the main head and if it has a target, then it will overwrite the targets of the other heads.
+     * The left and right heads will only act independently if the center head has no target.
+     * This vanilla behavior can obviously be overridden using the {@link org.bukkit.event.entity.WitherHeadTargetEvent} event.
      *
      * @param head which head to check the target of
      * @param entity the entity to set as the target
