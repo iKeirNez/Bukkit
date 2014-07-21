@@ -1,21 +1,21 @@
 package org.bukkit.event.entity;
 
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Wither;
 import org.bukkit.entity.Wither.WitherHead;
 import org.bukkit.event.Cancellable;
 
 /**
- * Called when a wither head targets or untargets an entity for its wither
+ * Called when a wither head targets or un-targets an entity for its wither
  * skull attack.
  */
 public class WitherHeadTargetEvent extends EntityTargetLivingEntityEvent implements Cancellable {
-    private boolean cancel = false;
-    private WitherHead head;
 
-    public WitherHeadTargetEvent(Entity entity, LivingEntity target, TargetReason reason, WitherHead head) {
+    private WitherHead witherHead;
+
+    public WitherHeadTargetEvent(Wither entity, LivingEntity target, TargetReason reason, WitherHead witherHead) {
         super(entity, target, reason);
-        this.head = head;
+        this.witherHead = witherHead;
     }
 
     /**
@@ -24,14 +24,21 @@ public class WitherHeadTargetEvent extends EntityTargetLivingEntityEvent impleme
      * @return Which wither head is targeting an entity
      */
     public WitherHead getWitherHead() {
-        return head;
+        return witherHead;
     }
 
-    public boolean isCancelled() {
-        return cancel;
+    /**
+     * Sets the head which should have its target modified.
+     *
+     * @param witherHead the head which should have its target modified
+     */
+    public void setWitherHead(WitherHead witherHead){
+        this.witherHead = witherHead;
     }
 
-    public void setCancelled(boolean cancel) {
-        this.cancel = cancel;
+    @Override
+    public Wither getEntity() {
+        return (Wither) super.getEntity();
     }
+
 }
